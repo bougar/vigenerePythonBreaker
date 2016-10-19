@@ -1,22 +1,30 @@
 #!/usr/bin/python
+import operator
 from operator import itemgetter
 
 class Text:
-    def __init__(self, filename):
-        self.load(filename)
+    def __init__(self, filename=0):
+        if filename:
+            self.load(filename)
 
     def load(self, filename):
         fp = open(filename, "r")
         self.rawtext = fp.read()
         fp.close()
         self.text = self.convert(self.rawtext)      
+    def loadFromString(self, string):
+        self.rawtext = string
+        self.text = self.convert(self.rawtext)
 
     def convert(self, txt):
         rval = ""
         for c in txt.upper():
-            if c.isapha():
+            if c.isalpha():
                 rval += c
-            return rval
+        return rval
+
+    def get(self):
+        return self.text
 
     def __str__(self):
         rval = ""
@@ -42,7 +50,7 @@ class Freq:
                 dictionary[s] += 1
             else:
                 dictionary[s] = 1
-        return dictionary
+        return (sorted(dictionary.items(),key=operator.itemgetter(1), reverse=True))
 
     def get(self):
         return self.count
