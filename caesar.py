@@ -58,7 +58,7 @@ class CaesarCrack:
         for i in range(ord('A'), ord('Z')+1):
             if dictionary.get(chr(i)) is None:
                 dictionary[chr(i)] = 0
-        for i in range(ord('A'), ord('Z')):
+        for i in range(ord('A'), ord('Z')+1):
             aux = dictionary[chr(i)] + dictionary[chr(((i - 65 + 4) % 26) + 65 )] + dictionary[chr(((i - 65 + 11) % 26) + 65 )]
             t = chr(i), aux
             l.append(t)

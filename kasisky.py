@@ -8,15 +8,6 @@ class vigenereCrack:
     def __init__(self, filename):
         self.text = Text(filename)
 
-    #Get divisors of substring distances =D
-    #Used for another algorith to get key lenght
-    def getDivisors(self,n):
-        l = []
-        for i in range(2,n):
-            if n % i == 0:
-                l.append(i)
-        return l
-
     def countOcc(l): # return list with (decimal_char, occ) 
         d={}
         for elt in l:

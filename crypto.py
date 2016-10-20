@@ -12,6 +12,7 @@ class Text:
         self.rawtext = fp.read()
         fp.close()
         self.text = self.convert(self.rawtext)      
+
     def loadFromString(self, string):
         self.rawtext = string
         self.text = self.convert(self.rawtext)
@@ -25,6 +26,9 @@ class Text:
 
     def get(self):
         return self.text
+
+    def getRawText(self):
+        return self.rawtext
 
     def __str__(self):
         rval = ""
@@ -50,7 +54,7 @@ class Freq:
                 dictionary[s] += 1
             else:
                 dictionary[s] = 1
-        return (sorted(dictionary.items(),key=operator.itemgetter(1), reverse=True))
+        return (sorted(dictionary.items(),key=itemgetter(1), reverse=True))
 
     def get(self):
         return self.count
