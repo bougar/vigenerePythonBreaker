@@ -49,7 +49,6 @@ class vigenereCrack:
                 except:
                     distance[diff] = 1
                 j += len(subString) + d
-                freq.extend(self.getDivisors(diff))
 
     def getKeyLen(self, distanceList, n = 5):
         subList = distanceList[0:n]
@@ -76,6 +75,8 @@ class vigenereCrack:
         a = self.getKeyLen(self.getTuples()) 
         b = self.separeString(a)
         cracker = CaesarCrack()
+        key = ""
         for i in range(len(b)):
             cracker.loadFromString(b[i])
-            print cracker.crack()
+            key += cracker.crack()
+        return key 
