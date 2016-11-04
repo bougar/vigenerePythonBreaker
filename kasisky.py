@@ -3,24 +3,12 @@ from crypto import *
 from caesar import *
 import operator
 from fractions import gcd
+import logging
 
 class vigenereCrack:
     def __init__(self, filename):
         self.text = Text(filename)
 
-    def countOcc(l): # return list with (decimal_char, occ) 
-        d={}
-        for elt in l:
-            if d.has_key(elt):
-                d[elt] += 1
-            else:
-                d[elt] = 1
-        return sorted(d.items(),key=lambda x: x[1], reverse=True)
-
-
-    #Return the number of repeated tuples and divisors of its distances
-    #Entrada -> string
-    #Salida -> number, lista
     def getTuples(self, n = 3):
         string = self.text.get()
         freq = []
@@ -72,6 +60,8 @@ class vigenereCrack:
         return l
                 
     def crack(self):
+        if ( len(self.text.get()) < 500 ):
+            loggin.warning("Text is so small")
         a = self.getKeyLen(self.getTuples()) 
         b = self.separeString(a)
         cracker = CaesarCrack()
